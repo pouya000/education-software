@@ -1,0 +1,104 @@
+.quiz_analysis .lesson-title {
+    cursor: pointer;
+}
+
+.quiz_analysis .lesson-title1 {
+    position: absolute;
+    top: -69px;
+    right: 0;
+    opacity: 0.15;
+    background-color: white;
+    border: 2px solid orange;
+    border-top-right-radius: 25px;
+    border-top-left-radius: 25px;
+    border-bottom: none;
+    z-index: 5 !important;
+}
+
+.quiz_analysis .lesson-title2 {
+    position: absolute;
+    background-color: white;
+    opacity: 0.15;
+    top: -71px;
+    right: 160px;
+    /*padding-left: 10%;*/
+    border: 2px solid orange;
+    border-top-right-radius: 25px;
+    border-top-left-radius: 25px;
+    border-bottom: none;
+    display: inline-block;
+    z-index: 4;
+}
+
+.quiz_analysis .lesson-title3 {
+    background-color: white;
+    opacity: 0.15;
+    position: absolute;
+    top: -69px;
+    right: 320px;
+    border: 2px solid orange;
+    border-top-right-radius: 25px;
+    border-top-left-radius: 25px;
+    border-bottom: none;
+    display: inline-block;
+    z-index: 3;
+}
+
+.quiz_analysis .lesson-title4 {
+    background-color: white;
+    opacity: 0.15;
+    position: absolute;
+    top: -69px;
+    right: 528px;
+    border: 2px solid orange;
+    border-top-right-radius: 25px;
+    border-top-left-radius: 25px;
+    border-bottom: none;
+    display: inline-block;
+    z-index: 2;
+}
+
+.quiz_analysis .title-active {
+    opacity: 1;
+    top: -69px;
+}
+
+.quiz_analysis img {
+    width: 37px;
+    height: 37px;
+    margin-left: 20px;
+}
+
+.quiz_analysis .my-table {
+    border: 2px solid orange;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    overflow: hidden;
+    /*border-bott: 1px solid red;*/
+}
+
+.quiz_analysis .lessons .riazi,
+.quiz_analysis .lessons .english,
+.quiz_analysis .lessons .all-lessons,
+.quiz_analysis .lessons .average {
+    display: none;
+}
+
+.quiz_analysis .lessons .farsi,
+.quiz_analysis .lessons .riazi,
+.quiz_analysis .lessons .english,
+.quiz_analysis .lessons .all-lessons,
+.quiz_analysis .lessons .average {
+    /*background-color: #fff;*/
+    /*width: 100%;*/
+    /*border-radius: 15px;*/
+    /*height: 500px;*/
+}
+
+.quiz_analysis .lessons .table-responsive .my-table img{
+    /*width: 500px;*/
+    /*height: 350px;*/
+    width: 40%;
+    height: auto;
+}

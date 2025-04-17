@@ -1,0 +1,167 @@
+{% extends 'shared/_layout.html' %}
+
+{% block content %}
+    <section class="section main-banner my-5 py-5" id="top" data-section="section1">
+        <div class="container my-5">
+            <div class="quiz_information">
+                <div class=" position-relative">
+                    <div class="lessons-titles">
+                        <div class="lesson-title lesson-title1 title-active">
+                            <div class="d-flex justify-content-srart align-items-center p-3">
+                                <div class="test-icon">
+                                    <img src="/static/images/test-icon-01.png" alt="">
+                                </div>
+                                <h4>فارسی </h4>
+                            </div>
+                        </div>
+                        <div class="lesson-title lesson-title2">
+                            <div class="d-flex justify-content-srart align-items-center p-3">
+                                <div class="test-icon">
+                                    <img src="/static/images/test-icon-02.png" alt="">
+                                </div>
+                                <h4>ریاضی </h4>
+                            </div>
+                        </div>
+                        <div class="lesson-title lesson-title3">
+                            <div class="d-flex justify-content-srart align-items-center p-3">
+                                <div class="test-icon">
+                                    <img src="/static/images/test-icon-04.png" alt="">
+                                </div>
+                                <h4>انگلیسی </h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="lessons">
+                        <div class="table-responsive farsi">
+                            <div class="my-table">
+                                <table class="table table-striped mb-0">
+                                    <tr class="cart_menu">
+                                        <td class="date">تاریخ شرکت در آزمون</td>
+                                        <td class="date">زمان</td>
+                                        <td class=" lesson">درس</td>
+                                        <td class="number-doing">سطح آزمون</td>
+                                        <td class="score">امتیاز <i class="bi bi-star-fill ms-2 mt-1 text-warning"></i>
+                                        </td>
+                                        <td class="pass">قبول</td>
+                                    </tr>
+                                    {% for quiz in quiz_farsi %}
+                                        {% for detail in quiz.quizdetail_set.all %}
+                                            <tr>
+                                                <td class=" date">{{ quiz.get_jalali_create_date }}</td>
+                                                <td class="lesson">{{ quiz.get_jalali_time }}</td>
+                                                <td class="lesson">{{ detail.lesson }}</td>
+                                                <td class="number-doing"><i class="bi bi-1-circle"></i></td>
+                                                <td class="score"> {{ detail.score }}</td>
+                                                <td class="pass">
+                                                    {% if  detail.score > 2 %}
+                                                        <i class="bi bi-emoji-smile" style=""></i>
+                                                    {% else %}
+                                                        <i class="bi bi-emoji-neutral"></i>
+                                                    {% endif %}
+
+                                                </td>
+                                            </tr>
+                                        {% endfor %}
+                                    {% endfor %}
+
+                                </table>
+                            </div>
+                        </div>
+                        <div class="table-responsive riazi">
+                            <div class="my-table">
+                                <table class="table table-striped mb-0">
+                                    <tr class="cart_menu">
+                                        <td class="date">تاریخ شرکت در آزمون</td>
+                                        <td class="date">زمان</td>
+                                        <td class=" lesson">درس</td>
+                                        <td class="number-doing">سطح آزمون</td>
+                                        <td class="score">امتیاز <i class="bi bi-star-fill ms-2 mt-1 text-warning"></i>
+                                        </td>
+                                        <td class="pass">قبول</td>
+                                    </tr>
+                                    {% for quiz in quiz_riazi %}
+                                        {% for detail in quiz.quizdetail_set.all %}
+                                            <tr>
+                                                <td class=" date">{{ quiz.get_jalali_date }}</td>
+                                                <td class=" date">{{ quiz.get_jalali_time }}</td>
+                                                <td class="lesson">{{ detail.lesson }}</td>
+                                                <td class="number-doing"><i class="bi bi-1-circle"></i></td>
+                                                <td class="score"> {{ detail.score }}</td>
+                                                <td class="pass">
+                                                    {% if  detail.score > 2 %}
+                                                        <i class="bi bi-emoji-smile" style=""></i>
+                                                    {% else %}
+                                                        <i class="bi bi-emoji-neutral"></i>
+                                                    {% endif %}
+
+                                                </td>
+                                            </tr>
+                                        {% endfor %}
+                                    {% endfor %}
+
+                                </table>
+                            </div>
+                        </div>
+                        <div class="table-responsive english">
+                            <div class="my-table">
+                                <table class="table table-striped mb-0">
+                                    <tr class="cart_menu">
+                                        <td class="date">تاریخ شرکت در آزمون</td>
+                                        <td class=" lesson">اسم آزمون</td>
+                                        <td class="number-doing">سطح آزمون</td>
+                                        <td class="score">امتیاز <i class="bi bi-star-fill ms-2 mt-1 text-warning"></i>
+                                        </td>
+                                        <td class="pass">قبول</td>
+                                    </tr>
+                                    {% for quiz in quiz_farsi %}
+                                        {% for detail in quiz.quizdetail_set.all %}
+                                            <tr>
+                                                <td class=" date">
+                                                    {{ quiz.get_jalali_date }}{{ quiz.get_jalali_time }}</td>
+                                                <td class="lesson">{{ detail.lesson }}</td>
+                                                <td class="number-doing"><i class="bi bi-1-circle"></i></td>
+                                                <td class="score"> {{ detail.score }}</td>
+                                                <td class="pass">
+                                                    {% if  detail.score > 2 %}
+                                                        <i class="bi bi-emoji-smile" style=""></i>
+                                                    {% else %}
+                                                        <i class="bi bi-emoji-neutral"></i>
+                                                    {% endif %}
+
+                                                </td>
+                                            </tr>
+                                        {% endfor %}
+                                    {% endfor %}
+
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        const lessonTitle = document.querySelector('.lessons-titles').children;
+        {#const farsi1 = document.querySelector('.farsi-sathe-1');#}
+        {#const farsi2 = document.querySelector('.farsi-sathe-2');#}
+        {#const farsi3 = document.querySelector('.farsi-sathe-3');#}
+        const lessons = document.querySelector('.lessons').children;
+        console.log('farsiha is: ', lessons[1])
+
+        for (let i = 0; i < lessonTitle.length; i++) {
+            lessonTitle[i].addEventListener('click', (e) => {
+                for (let j = 0; j < lessonTitle.length; j++) {
+                    lessonTitle[j].classList.remove('title-active');
+                    lessons[j].style.display = 'none'
+                }
+                lessonTitle[i].classList.add('title-active');
+                lessons[i].style.display = 'block';
+                // this.classList.add('title-active')
+            })
+        }
+    </script>
+
+{% endblock %}
+

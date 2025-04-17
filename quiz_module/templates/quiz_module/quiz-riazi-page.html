@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en" dir="rtl">
+<head>
+    {#    <meta charset="UTF-8">#}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="TemplateMo">
+    <script src="https://kit.fontawesome.com/eb8d05f470.js" crossorigin="anonymous"></script>
+    <title>امتحان</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+    <link href="/static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Additional CSS Files -->
+    <!-- <link rel="stylesheet" href="static/css/fontawesome.css"> -->
+    <link rel="stylesheet" href="/static/css/templatemo-edu-meeting.css">
+    <link rel="stylesheet" href="/static/css/owl.css">
+    <link rel="stylesheet" href="/static/css/lightbox.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+</head>
+<body>
+
+<div class="container">
+    <div class="counter_down">
+        <div class="quiz-info mt-3">
+            <p>آزمون درس ریاضی</p>
+            <p>سطح آزمون: <span>یک</span></p>
+            <p>زمان آزمون: <span>15</span> دقیقه</p>
+            <div class="quiz-profile">
+                <div class="image-profile2 ms-3">
+                    {% if current_user.avatar %}
+                        <img src="{{ current_user.avatar.url }}" alt="">
+                    {% else %}
+                        <img src="static/images/avatar_image.jpg" alt="">
+                    {% endif %}
+                </div>
+                {% if current_user.first_name %}
+                    <h6> {{ user.first_name }} </h6>
+                {% else %}
+                    <h6> {{ user.email }}</h6>
+                {% endif %}
+            </div>
+        </div>
+        <div class="quiz-timer align-items-center text-info p-1 shadow">
+            <div class="ms-3">
+                <img src="/static/images/timer.png" alt="">
+            </div>
+
+            <div class="ms-3 d-flex">
+                <div class="ms-1">دقیقه</div>
+                <div class="minute"></div>
+            </div>
+            <div class="ms-3 d-flex">
+                <div class="ms-1">ثانیه</div>
+                <div class="second"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{#onclick="start_quiz('ریاضی')"#}
+
+<div class="container my-3">
+    <div class="exam">
+        <div class="row justify-content-center ">
+            <div class="col-md-4 text-center">
+                <button class="btn btn-light border-secondary shadow counter_down-button" onclick="startRiaziQuiz()" >شروع آزمون</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% if is_context_empty == 't' %}
+    <div class="container px-4 m-5">
+    <div class="quiz shadow p-5 col-12 justify-content-center">
+        <div class="">
+            <h2 class="text-center text-warning">آزمون درس ریاضی</h2>
+            <br><br>
+            <form action="{% url 'quiz-farsi-page' %}" method="post">
+                {% csrf_token %}
+                <div class="row my-4 border-bottom border-secondary py-3">
+                    <div class="col-md-12">
+                        <h4> 1- {{ question1 }}</h4>
+                        <input type="hidden" name="{{ answer1 }}" value="{{ answer1 }}" id="answer1">
+                    </div>
+                    <br><br>
+                    <div class="row options-for-question">
+                        <div class="col-md-6">
+                            <input class="radio-b" type="radio" name="options1" id="optiona">
+                            <label for="optiona" class="mx-2">
+                                {{ options1a }}
+                            </label>
+                        </div>
+                        <div class="col-md-6">
+                            <input class="radio-b" type="radio" name="options1" id="optionb">
+                            <label for="optionb" class="mx-2">
+                                {{ options1b }}
+                            </label>
+                        </div>
+                        <div class="col-md-6">
+                            <input class="radio-b" type="radio" name="options1" id="optionc">
+                            <label for="optionc" class="mx-2">
+                                {{ options1c }}
+                            </label>
+                        </div>
+                        <div class="col-md-6">
+                            <input class="radio-b" type="radio" name="options1" id="optiond">
+                            <label for="optiond" class="mx-2">
+                                {{ options1d }}
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row my-4 border-bottom border-secondary py-3">
+                    <div class="col-md-12">
+                        <h4> 2- {{ question2 }}</h4>
+                        <input type="hidden" name="{{ answer2 }}" value="{{ answer2 }}" id="answer2">
+                    </div>
+                    <br><br>
+                    <div class="row options-for-question">
+                        <div class="col-md-6">
+                            <input class="radio-b" type="radio" name="options2" id="optiona">
+                            <label for="optiona" class="mx-2">
+                                {{ options2a }}
+                            </label>
+                        </div>
+                        <div class="col-md-6">
+                            <input class="radio-b" type="radio" name="options2" id="optiona">
+                            <label for="optiona" class="mx-2">
+                                {{ options2b }}
+                            </label>
+                        </div>
+                        <div class="col-md-6">
+                            <input class="radio-b" type="radio" name="options2" id="optiona">
+                            <label for="optiona" class="mx-2">
+                                {{ options2c }}
+                            </label>
+                        </div>
+                        <div class="col-md-6">
+                            <input class="radio-b" type="radio" name="options2" id="optiona">
+                            <label for="optiona" class="mx-2">
+                                {{ options2d }}
+                            </label>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row my-4 border-bottom border-secondary py-3">
+                    <div class="col-md-12">
+                        <h4> 3- {{ question3 }}</h4>
+                        <input type="hidden" name="{{ answer3 }}" value="{{ answer3 }}" id="answer3">
+                    </div>
+                    <br><br>
+                    <div class="row options-for-question">
+                        <div class="col-md-6">
+                            <input class="radio-b" type="radio" name="options3" id="optiona">
+                            <label for="optiona" class="mx-2">
+                                {{ options3a }}
+                            </label>
+                        </div>
+                        <div class="col-md-6">
+                            <input class="radio-b" type="radio" name="options3" id="optiona">
+                            <label for="optiona" class="mx-2">
+                                {{ options3b }}
+                            </label>
+                        </div>
+                        <div class="col-md-6">
+                            <input class="radio-b" type="radio" name="options3" id="optiona">
+                            <label for="optiona" class="mx-2">
+                                {{ options3c }}
+                            </label>
+                        </div>
+                        <div class="col-md-6">
+                            <input class="radio-b" type="radio" name="options3" id="optiona">
+                            <label for="optiona" class="mx-2">
+                                {{ options3d }}
+                            </label>
+                        </div>
+                    </div>
+
+                </div>
+{#                <div class="row my-4 border-bottom border-secondary py-3">#}
+{#                    <div class="col-md-12">#}
+{#                        <h4> 4- {{ question4 }}</h4>#}
+{#                        <input type="hidden" name="{{ answer4 }}" value="{{ answer4 }}" id="answer4">#}
+{#                    </div>#}
+{#                    <br><br>#}
+{#                    <div class="row options-for-question">#}
+{#                        <div class="col-md-6">#}
+{#                            <input class="radio-b" type="radio" name="options4" id="optiona">#}
+{#                            <label for="optiona" class="mx-2">#}
+{#                                {{ options4a }}#}
+{#                            </label>#}
+{#                        </div>#}
+{#                        <div class="col-md-6">#}
+{#                            <input class="radio-b" type="radio" name="options4" id="optiona">#}
+{#                            <label for="optiona" class="mx-2">#}
+{#                                {{ options4b }}#}
+{#                            </label>#}
+{#                        </div>#}
+{#                        <div class="col-md-6">#}
+{#                            <input class="radio-b" type="radio" name="options4" id="optiona">#}
+{#                            <label for="optiona" class="mx-2">#}
+{#                                {{ options4c }}#}
+{#                            </label>#}
+{#                        </div>#}
+{#                        <div class="col-md-6">#}
+{#                            <input class="radio-b" type="radio" name="options4" id="optiona">#}
+{#                            <label for="optiona" class="mx-2">#}
+{#                                {{ options4d }}#}
+{#                            </label>#}
+{#                        </div>#}
+{#                    </div>#}
+{##}
+{#                </div>#}
+{#                <div class="row my-4 border-bottom border-secondary py-3">#}
+{#                    <div class="col-md-12">#}
+{#                        <h4> 5- {{ question5 }}</h4>#}
+{#                        <input type="hidden" name="{{ answer5 }}" value="{{ answer5 }}" id="answer5">#}
+{#                    </div>#}
+{#                    <br><br>#}
+{#                    <div class="row options-for-question">#}
+{#                        <div class="col-md-6">#}
+{#                            <input class="radio-b" type="radio" name="options5" id="optiona">#}
+{#                            <label for="optiona" class="mx-2">#}
+{#                                {{ options5a }}#}
+{#                            </label>#}
+{#                        </div>#}
+{#                        <div class="col-md-6">#}
+{#                            <input class="radio-b" type="radio" name="options5" id="optiona">#}
+{#                            <label for="optiona" class="mx-2">#}
+{#                                {{ options5b }}#}
+{#                            </label>#}
+{#                        </div>#}
+{#                        <div class="col-md-6">#}
+{#                            <input class="radio-b" type="radio" name="options5" id="optiona">#}
+{#                            <label for="optiona" class="mx-2">#}
+{#                                {{ options5c }}#}
+{#                            </label>#}
+{#                        </div>#}
+{#                        <div class="col-md-6">#}
+{#                            <input class="radio-b" type="radio" name="options5" id="optiona">#}
+{#                            <label for="optiona" class="mx-2">#}
+{#                                {{ options5d }}#}
+{#                            </label>#}
+{#                        </div>#}
+{#                    </div>#}
+{##}
+{#                </div>#}
+            </form>
+            <div class="container my-3">
+                <div class="exam">
+                    <div class="row justify-content-center ">
+                        <div class="col-md-4 text-center">
+                            <button class="btn btn-light border-secondary shadow counter_down-button"
+                                    onclick="save_information_exam('ریاضی')">اتمام
+                                آزمون
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% else %}
+    <br>
+    <div class="">
+        <h3 class="text-center text-warning">شما در آزمون درس دیگری شرکت کرده اید اما آنرا به پایان نرسانده اید <br><br>  این آزمون در حال برگزاری است .. </h3>
+    </div>
+{% endif %}
+
+{#<div class="container px-4 m-5">#}
+{#    <div class="quiz shadow p-5 col-12 justify-content-center d-flex my-counter">#}
+{#        <div class="">#}
+{#            <h2 class="text-center text-warning">آزمون درس ریاضی</h2>#}
+{#            <br><br>#}
+{#            <form action="{% url 'quiz-riazi-page' %}" method="post">#}
+{#                {% csrf_token %}#}
+{#{% for i in f_list %}#}
+{#                {% for q in questions %}#}
+{#                        <h4 id="my_box"> - {{ q }}</h4>#}
+{#                        <input type="hidden" name="answer{{ i }}" value="answer{{ i }}" id="answer1">#}
+{#                        <br><br>#}
+{#                        <div class="row options-for-question">#}
+{#                            <div class="col-md-6">#}
+{#                                <input class="radio-b" type="radio" name="options1" id="optiona">#}
+{#                                <label for="optiona" class="mx-2">#}
+{#                                    {{ q.option1 }}#}
+{#                                </label>#}
+{#                            </div>#}
+{#                            <div class="col-md-6">#}
+{#                                <input class="radio-b" type="radio" name="options1" id="optiona">#}
+{#                                <label for="optiona" class="mx-2">#}
+{#                                    {{ q.option2 }}#}
+{#                                </label>#}
+{#                            </div>#}
+{#                            <div class="col-md-6">#}
+{#                                <input class="radio-b" type="radio" name="options1" id="optiona">#}
+{#                                <label for="optiona" class="mx-2">#}
+{#                                    {{ q.option3 }}#}
+{#                                </label>#}
+{#                            </div>#}
+{#                            <div class="col-md-6">#}
+{#                                <input class="radio-b" type="radio" name="options1" id="optiona">#}
+{#                                <label for="optiona" class="mx-2">#}
+{#                                    {{ q.option4 }}#}
+{#                                </label>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    {% endfor %}#}
+{#                {% endfor %}#}
+{#            </form>#}
+{#        </div>#}
+{#    </div>#}
+{#</div>#}
+
+
+<div class="container">
+    <div class="quiz-result justify-content-center bg-white shadow">
+        <h2>اتمام زمان آزمون</h2>
+        <p class="text-secondary ">بازگشت به صفحه اصلی</p>
+        <a href="{% url 'home_page' %}">
+            <button id="register-button">صفحه اصلی</button>
+        </a>
+        <p class="text-secondary ">اتمام آزمون و مشاهده نتیجه</p>
+        <a href="{% url 'quiz_information' %}">
+            <button id="game-button"> مشاهده نتیجه</button>
+        </a>
+    </div>
+</div>
+
+{% include 'shared/footer_refrences.html' %}
+
+<script>
+
+    {#========================== get riazi score start =============================#}
+    var myBox = document.getElementById('my_box');
+    var riazi_score = 0;
+    let student_answers = {
+        "student_answer1": 1,
+        "student_answer2": 2,
+        "student_answer3": 3,
+    };
+    let end_of_exam = false;
+    const quizTimer = document.querySelector('.quiz-timer');
+    let studentAnswer;
+    const question = document.querySelectorAll('.options-for-question .col-md-6 .radio-b');
+    const answer1 = document.getElementById('answer1').value;
+    const answer2 = document.getElementById('answer2').value;
+    const answer3 = document.getElementById('answer3').value;
+
+    const quizResult = document.querySelector('.quiz-result');
+
+    question.forEach((q) => {
+        q.addEventListener('click', getAnswer)
+        console.log('option is: ', q);
+    })
+
+    function getAnswer(e) {
+        target_p_name = e.target.name;
+        studentAnswer = e.target.parentElement.innerText.trim();
+        if (target_p_name === 'options1') {
+            student_answers['student_answer1'] = studentAnswer;
+        }
+        if (target_p_name === 'options2') {
+            student_answers['student_answer2'] = studentAnswer;
+        }
+        if (target_p_name === 'options3') {
+            student_answers['student_answer3'] = studentAnswer;
+            {#console.log('student_answer is: ', student_answers);#}
+        }
+        if (target_p_name === 'options4') {
+            student_answers['student_answer4'] = studentAnswer;
+            {#console.log('student_answer is: ', student_answers);#}
+        }
+        if (target_p_name === 'options5') {
+            student_answers['student_answer5'] = studentAnswer;
+            {#console.log('student_answer is: ', student_answers);#}
+        }
+    }
+
+    function checkAnswer() {
+        if (student_answers['student_answer1'] === answer1) {
+            riazi_score += 1;
+        }
+        if (student_answers['student_answer2'] === answer2) {
+            riazi_score += 1;
+        }
+        if (student_answers['student_answer3'] === answer3) {
+            riazi_score += 1;
+        }
+
+        console.log('riazi score is: ', riazi_score);
+        return riazi_score;
+    }
+
+    function start_quiz(lesson) {
+            $.get('/start_quiz', {lesson: lesson}).then(res => {
+            {#console.log('lesson in console: ', lesson,'res_q in console: ', res_q);#}
+        })
+    }
+
+    function save_information_exam(lesson) {
+        console.log('end_of_exam before is: ', end_of_exam);
+        end_of_exam = true
+        console.log('end_of_exam after is: ', end_of_exam);
+        const date = new Date();
+        let day = date.getDate()
+        let month = date.getMonth()
+        let year = date.getFullYear()
+        let score = checkAnswer();
+        $.get('/add_quiz', {lesson: lesson, score: score, year: year, month: month, day: day}).then(res => {
+            {#console.log(res);#}
+            quizResult.classList.add('active');
+            window.scrollTo({top: 0, behavior: `smooth`});
+            {#quizTimer.classList.add('deactive');#}
+            document.body.style.background = 'gray';
+            {#timer = 1000;#}
+            document.body.style.overflow = 'hidden';
+            {#location.reload();#}
+        })
+    }
+
+    function startRiaziQuiz(){
+        const riazi_start_time = new Date().toLocaleString();
+        const current_time = new Date().toLocaleString();
+        $.get('/startRiaziQuiztion', {riazi_start_time: riazi_start_time,current_time:current_time}).then(res => {
+            console.log(res);
+        })
+    }
+
+    {#======================== get riazi score end ========================#}
+
+
+    {#======================== counter down start ========================#}
+    {#const quizTimer = document.querySelector('.quiz-timer');#}
+    const exam = document.querySelector('.exam');
+    const quiz = document.querySelector('.quiz');
+    const counterDownButton = document.querySelector('.counter_down-button');
+
+    counterDownButton.addEventListener('click', fire)
+    var timer = 301;
+    const minuteDiv = document.querySelector('.minute');
+    const secondDiv = document.querySelector('.second');
+    {#const counterDouwn2 = () => {#}
+    {#    timer -= 1;#}
+    {#    let minute = Math.floor(timer / 60)#}
+    {#    let second = timer % 60#}
+    {#    minuteDiv.innerHTML = minute;#}
+    {#    secondDiv.innerHTML = second;#}
+    {#    if (second === 0 && minute === 0 && end_of_exam === false) {#}
+    {#        save_information_exam('ریاضی');#}
+    {#    }#}
+
+
+    const counterDouwn2 = () => {
+        let minute = Math.floor(timer / 60)
+        let second = timer % 60
+        minuteDiv.innerHTML = minute;
+        secondDiv.innerHTML = second;
+        {#console.log('timer is: ', timer);#}
+        timer -= 1
+        if (timer === 0 && end_of_exam === false) {
+            console.log('end_of_exam before is: ', end_of_exam);
+            end_of_exam = true;
+            console.log('end_of_exam after is: ', end_of_exam);
+            secondDiv.innerHTML = 0;
+            clearInterval(fire_id)
+            save_information_exam('ریاضی');
+        }
+        if (end_of_exam === true) {
+            console.log('end_of_exam in else is: ', end_of_exam);
+            clearInterval(fire_id)
+        }
+    }
+
+    counterDouwn2()
+
+    function fire() {
+        fire_id = setInterval(counterDouwn2, 1000);
+        exam.style.display = 'none';
+        quiz.classList.add('active');
+    }
+</script>
+
+</body>
+</html>

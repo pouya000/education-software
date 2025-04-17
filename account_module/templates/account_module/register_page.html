@@ -1,0 +1,153 @@
+{% extends 'shared/_layout.html' %}
+
+{% block title %}
+    ثبت نام
+{% endblock %}
+
+
+{#{% block header %}#}
+{#    <!-- Sub Header start-->#}
+{#    <div class="sub-header">#}
+{#        <div class="container">#}
+{#            <div class="row">#}
+{#                <div class="col-lg-8 col-sm-8">#}
+{#                    <div class="left-content">#}
+{#                        <p>این سایت توسط پویا شمسی برای <em> پروژه پایانی </em> طراحی شده است.</p>#}
+{#                    </div>#}
+{#                </div>#}
+{#                <!-- <div class="col-lg-4 col-sm-4">#}
+{#                  <div class="right-icons">#}
+{#                    <ul>#}
+{#                      <li><a href="#"><i class="fa fa-facebook"></i></a></li>#}
+{#                      <li><a href="#"><i class="fa fa-twitter"></i></a></li>#}
+{#                      <li><a href="#"><i class="fa fa-behance"></i></a></li>#}
+{#                      <li><a href="#"><i class="fa fa-linkedin"></i></a></li>#}
+{#                    </ul>#}
+{#                  </div>#}
+{#                </div> -->#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+{#    <!-- Sub Header end-->#}
+{##}
+{#    <!-- ***** Header Area Start ***** -->#}
+{#    <header class="header-area header-sticky">#}
+{#        <div class="container">#}
+{#            <div class="row">#}
+{#                <div class="col-12">#}
+{#                    <nav class="main-nav">#}
+{#                        <!-- ***** Logo Start ***** -->#}
+{#                        <div class="header-icons">#}
+{#                            <div class="header-signup-button">#}
+{#                                <i class="fas fa-user-lock"></i>#}
+{#                                <a href="">#}
+{#                                    <span class="px-2"> ثبت نام / ورود </span>#}
+{#                                </a>#}
+{#                            </div>#}
+{#                            <!-- <i class="fa fa-shopping-bag" style="color: rgb(239, 55, 55);"></i> -->#}
+{#                            <i class="fas fa-user-lock mx-3" style="color: rgb(239, 55, 55);"></i>#}
+{#                            <span class="lesson-score"> 0 </span>#}
+{#                        </div>#}
+{#                        <!-- ***** Logo End ***** -->#}
+{#                        <!-- ***** Menu Start ***** -->#}
+{##}
+{#                        <a class='menu-trigger'>#}
+{#                            <span>Menu</span>#}
+{#                        </a>#}
+{#                        <!-- shopping-cart-box & contact-us-form start-->#}
+{#                        <!-- shopping-cart-box end-->#}
+{##}
+{#                        <!-- ***** Menu End ***** -->#}
+{#                    </nav>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{#    </header>#}
+{#    <!-- ***** Header Area End ***** -->#}
+{#{% endblock %}#}
+
+{% block content %}
+    <section class="contact-us popup" id="contact">
+        <div class="row">
+            <div class="align-self-center">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <form id="contact" action="{% url 'register_page' %}" method="post">
+                            {% csrf_token %}
+                            <div class="row">
+                                <div class="col-lg-12 header-signup">
+                                    <h1>فرم ثبت نام </h1>
+                                    <i class="fa fa-times"></i>
+                                </div>
+                                <div class="col-lg-12">
+                                    <fieldset>
+                                        {{ register_form.email }}
+                                    </fieldset>
+                                </div>
+                                <div class="col-lg-12">
+                                    <fieldset>
+                                        {{ register_form.password }}
+                                    </fieldset>
+                                </div>
+                                <div class="col-lg-12">
+                                    <fieldset>
+                                        {{ register_form.repassword }}
+                                    </fieldset>
+                                </div>
+                                <div class=" col-lg-12">
+                                    <fieldset>
+                                        <button type="submit" id="form-submit" class="button ms-4">ثبت نام</button>
+                                        <a href="{% url 'login_page' %}">ورود</a>
+                                    </fieldset>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{#    <section>#}
+{#        <div class="row mt-5 register_form">#}
+{#            <form action="{% url 'register_page' %}" method='post'>#}
+{#                {% csrf_token %}#}
+{#                <div class="row d-flex flex-column">#}
+{#                    <div class="col-2">#}
+{#                        <label for="">#}
+{#                            ایمیل#}
+{#                        </label>#}
+{#                    </div>#}
+{#                    <div class="col-6">#}
+{#                        {{ register_form.email }}#}
+{#                    </div>#}
+{#                </div>#}
+{#                <div class="row d-flex flex-column">#}
+{#                    <div class="col-2">#}
+{#                        <label for="">#}
+{#                            رمز عبور#}
+{#                        </label>#}
+{#                    </div>#}
+{#                    <div class="col-6">#}
+{#                        {{ register_form.password }}#}
+{#                    </div>#}
+{#                </div>#}
+{#                <div class="row d-flex flex-column">#}
+{#                    <div class="col-2">#}
+{#                        <label for="">#}
+{#                            تکرار رمز عبور#}
+{#                        </label>#}
+{#                    </div>#}
+{#                    <div class="col-6">#}
+{#                        {{ register_form.repassword }}#}
+{#                    </div>#}
+{#                </div>#}
+{#                <br>#}
+{#                <button type="submit" id="form-submit" class="button">ثبت نام</button>#}
+{#            </form>#}
+{#        </div>#}
+{#    </section>#}
+{% endblock %}
+
+
+
+

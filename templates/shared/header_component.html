@@ -1,0 +1,89 @@
+<!-- Sub Header start-->
+<div class="sub-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-sm-8">
+                <div class="left-content">
+                    <p>این سایت توسط پویا شمسی برای <em> پروژه پایانی </em> طراحی شده است.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Sub Header end-->
+
+<!-- ***** Header Area Start ***** -->
+<header class="header-area header-sticky">
+    <div class="container">
+        {% if user.is_authenticated %}
+            {% if current_user.avatar %}
+                <div class="image-profile">
+                    <img src="{{ current_user.avatar.url }}" alt="">
+                </div>
+            {% else %}
+                <div class="image-profile">
+                    <img src="static/images/avatar_image.jpg" alt="">
+                </div>
+            {% endif %}
+        {% endif %}
+        <div class="profile">
+            <ul>
+                <li class="d-flex text-center justify-content-center">
+                    {{ current_user.first_name }} {{ current_user.last_name }}
+                </li>
+                <li class="d-flex"><i class="bi bi-card-heading ms-2 mt-1 text-warning"></i><a href="">مشاهده حساب
+                    کاربری</a></li>
+                <li class="d-flex"><i class="bi bi-clipboard2 ms-2 mt-1 text-warning"></i><a
+                        href="{% url 'quiz_information' %}">آزمون ها</a>
+                </li>
+                <li class="d-flex"><i class="bi bi-graph-up-arrow ms-2 mt-1 text-warning"></i><a
+                        href="{% url 'student_analysis' %}">روند
+                    پیشرفت</a></li>
+                <li class="d-flex"><i class="bi bi-star-fill ms-2 mt-1 text-warning"></i><a href="">امتیاز ها</a>
+                </li>
+                <li class="d-flex"><i class="bi bi-pencil ms-2 mt-1 text-warning"></i><a
+                        href="{% url 'edit_profile' %}">ویرایش پروفایل</a>
+                </li>
+                <li class="d-flex align-items-center"><i class="bi bi-box-arrow-left ms-2 mt-1 text-warning"></i> <a
+                        href="{% url 'logout_page' %}">خروج از حساب کاربری</a></li>
+            </ul>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <nav class="main-nav">
+                    <!-- ***** Logo Start ***** -->
+                    <div class="header-icons">
+                        {% if not user.is_authenticated %}
+                            <div class="header-signup-button">
+                                <i class="fas fa-user-lock"></i>
+                                <a href="{% url 'register_page' %}">
+                                    <span class="px-2"> ثبت نام / ورود </span>
+                                </a>
+                            </div>
+                        {% endif %}
+                        <span class="lesson-score">  </span>
+                    </div>
+                    <!-- ***** Logo End ***** -->
+                    <!-- ***** Menu Start ***** -->
+                    <ul class="nav">
+                        <li class="scroll-to-section"><a href="#top" class="active"> خانه </a></li>
+                        <li><a href="meetings.html"> درس ها</a></li>
+                        <li class="scroll-to-section"><a href="#courses">آزمون</a></li>
+                        <li class="scroll-to-section"><a href="#top">روند پیشرفت </a></li>
+                        <li class="scroll-to-section"><a href="#apply" id="ham-menue"> درخواست مشاوره </a></li>
+                        <li class="has-sub">
+                            <a href="javascript:void(0)">ارتباط با ما </a>
+                            <ul class="sub-menu">
+                                <li><a href="meetings.html"> ارتباط با مدرسه</a></li>
+                                <li><a href="meeting-details.html"> ملاقات حضوری </a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <!-- shopping-cart-box end-->
+
+                    <!-- ***** Menu End ***** -->
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>

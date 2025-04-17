@@ -1,0 +1,26 @@
+{% load render_partial %}
+<!DOCTYPE html>
+<html lang="en" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="TemplateMo">
+  <script src="https://kit.fontawesome.com/eb8d05f470.js" crossorigin="anonymous"></script>
+  <!-- Bootstrap core CSS -->
+ {% include 'shared/header_refrences.html' %}
+    <title> {% block title %}{% endblock %} </title>
+</head>
+
+<body>
+    {% block header %}{% endblock %}
+{#    {% render_partial 'home_module.views.header_component' %}#}
+{#    {% render_partial 'home_module.views.headerComponent' %}#}
+
+    {% render_partial 'header_component' %}
+    {% block content %}{% endblock %}
+    {% include 'shared/footer_refrences.html' %}
+</body>
+
+
+</html>

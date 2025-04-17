@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="TemplateMo">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+    <link href="/static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/2048.css">
+    <link rel="stylesheet" href="/static/css/owl.css">
+    <link rel="stylesheet" href="/static/css/lightbox.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <title>2048 بازی</title>
+</head>
+
+<body>
+{% if need_score <= 0 %}
+    <div class="game_2048 pb-3">
+        <h2 class="text-info text-center py-3">2048 Game</h2>
+        <div class="title d-flex justify-content-center mt-0">
+            <div class="mark1 px-1 d-flex justify-content-center align-items-center text-secondary" id="points">
+                <button disabled> امتیاز : 2</button>
+            </div>
+            <div class="play px-1 d-flex justify-content-center align-items-center">
+                <a href=""><i class="bi bi-caret-right-square-fill"></i></a>
+            </div>
+            <div class="time px-1 d-flex justify-content-center align-items-center text-secondary">
+                دفعه
+            </div>
+        </div>
+        <div class="wrapper">
+            <div class="grid">
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+                <div class="cell"></div>
+            </div>
+        </div>
+    </div>
+
+{% else %}
+    <div class="d-flex flex-column justify-content-center align-items-center ">
+        <h2 class="text-info text-center py-4">2048 Game</h2>
+        <h3 class="text-secondary">.برای ورود به بازی باید در آزمون <a href="{% url 'quiz-riazi-page' %}">ریاضی</a> شرکت کنید و <strong
+                class="text-warning">{{ need_score }} ستاره</strong> دیگر جمع کنید</h3>
+    </div>
+{% endif %}
+
+<script src="/static/js/2048/2048.js" type="module"></script>
+<script src="/static/js/2048/grid.js" type="module"></script>
+<script src="/static/js/2048/number.js" type="module"></script>
+</body>
+</html>

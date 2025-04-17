@@ -1,0 +1,885 @@
+{% extends 'shared/_layout.html' %}
+{% load static %}
+{% block title %}
+    نرم افزار استعداد یاب
+{% endblock %}
+
+{#{% block header %}#}
+{#    {% include 'shared/header_component_top.html' %}#}
+{#    {% include 'shared/header_component.html' %}#}
+{#    {% render_partial 'header_component' %}#}
+{#{% endblock %}#}
+
+{#{% block header %}#}
+{#    <!-- Sub Header start-->#}
+{#    <div class="sub-header">#}
+{#        <div class="container">#}
+{#            <div class="row">#}
+{#                <div class="col-lg-8 col-sm-8">#}
+{#                    <div class="left-content">#}
+{#                        <p>این سایت توسط پویا شمسی برای <em> پروژه پایانی </em> طراحی شده است.</p>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+{#    <!-- Sub Header end-->#}
+{##}
+{#    <!-- ***** Header Area Start ***** -->#}
+{#    <header class="header-area header-sticky">#}
+{#        <div class="container">#}
+{#            {% if user.is_authenticated %}#}
+{#                <div class="image-profile">#}
+{#                    <img src="/static/images/puya-photo.jpg" alt="">#}
+{#                </div>#}
+{#            {% endif %}#}
+{#            <div class="profile">#}
+{#                <ul>#}
+{#                    <li class="d-flex"> پویا شمسی#}
+{#                    </li>#}
+{#                    <li class="d-flex"><i class="bi bi-card-heading ms-2 mt-1 text-warning"></i><a href="">مشاهده حساب#}
+{#                        کاربری</a></li>#}
+{#                    <li class="d-flex"><i class="bi bi-clipboard2 ms-2 mt-1 text-warning"></i><a#}
+{#                            href="{% url 'quiz_information' %}">آزمون ها</a>#}
+{#                    </li>#}
+{#                    <li class="d-flex"><i class="bi bi-graph-up-arrow ms-2 mt-1 text-warning"></i><a#}
+{#                            href="{% url 'student_analysis' %}">روند#}
+{#                        پیشرفت</a></li>#}
+{#                    <li class="d-flex"><i class="bi bi-star-fill ms-2 mt-1 text-warning"></i><a href="">امتیاز ها</a>#}
+{#                    </li>#}
+{#                    <li class="d-flex"><i class="bi bi-pencil ms-2 mt-1 text-warning"></i><a href="">ویرایش پروفایل</a>#}
+{#                    </li>#}
+{#                    <li class="d-flex align-items-center"><i class="bi bi-box-arrow-left ms-2 mt-1 text-warning"></i> <a#}
+{#                            href="{% url 'logout_page' %}">خروج از حساب کاربری</a></li>#}
+{#                </ul>#}
+{#            </div>#}
+{#            <div class="row">#}
+{#                <div class="col-12">#}
+{#                    <nav class="main-nav">#}
+{#                        <!-- ***** Logo Start ***** -->#}
+{#                        <div class="header-icons">#}
+{#                            {% if not user.is_authenticated %}#}
+{#                                <div class="header-signup-button">#}
+{#                                    <i class="fas fa-user-lock"></i>#}
+{#                                    <a href="{% url 'register_page' %}">#}
+{#                                        <span class="px-2"> ثبت نام / ورود </span>#}
+{#                                    </a>#}
+{#                                </div>#}
+{#                            {% endif %}#}
+{#                            <span class="lesson-score">  </span>#}
+{#                        </div>#}
+{#                        <!-- ***** Logo End ***** -->#}
+{#                        <!-- ***** Menu Start ***** -->#}
+{#                        <ul class="nav">#}
+{#                            <li class="scroll-to-section"><a href="#top" class="active"> خانه </a></li>#}
+{#                            <li><a href="meetings.html"> درس ها</a></li>#}
+{#                            <li class="scroll-to-section"><a href="#courses">آزمون</a></li>#}
+{#                            <li class="scroll-to-section"><a href="#top">روند پیشرفت </a></li>#}
+{#                            <li class="scroll-to-section"><a href="#apply" id="ham-menue"> درخواست مشاوره </a></li>#}
+{#                            <li class="has-sub">#}
+{#                                <a href="javascript:void(0)">ارتباط با ما </a>#}
+{#                                <ul class="sub-menu">#}
+{#                                    <li><a href="meetings.html"> ارتباط با مدرسه</a></li>#}
+{#                                    <li><a href="meeting-details.html"> ملاقات حضوری </a></li>#}
+{#                                </ul>#}
+{#                            </li>#}
+{#                        </ul>#}
+{#                        <!-- shopping-cart-box end-->#}
+{##}
+{#                        <!-- ***** Menu End ***** -->#}
+{#                    </nav>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{#    </header>#}
+{#    <!-- ***** Header Area End ***** -->#}
+{#{% endblock %}#}
+
+{% block content %}
+    <!-- <div class="overlay"></div> -->
+
+    <!-- ***** Main Banner Area Start ***** -->
+    <section class="section main-banner" id="top" data-section="section1">
+        <video autoplay muted loop id="bg-video">
+            <source src="/static/images/course-video.mp4" type="video/mp4"/>
+        </video>
+
+        <div class="video-overlay header-text">
+            <div class="container">
+
+                <nav class="navForHamberger" id="navForHamberger">
+                    <div class="justify-content-start text-start m-2">
+                        <i class="fa fa-times" style="color: red; font-size: x-large;"></i>
+                        <div class="col-lg-12">
+                            <div class="accordions is-first-expanded">
+                                <article class="accordion">
+                                    <div class="accordion-head">
+                                        <span>در چه زمینه ای نیاز به مشاوره دارید؟</span>
+                                    </div>
+                                    <div class="accordion-body">
+                                        <div class="content">
+
+                                        </div>
+                                    </div>
+                                </article>
+
+                                <article class="accordion">
+                                    <div class="accordion-head d-flex justify-content-between">
+                                        <span> انجام آزمون ها</span>
+                                        <span class="icon">
+                      <i class="icon fa fa-chevron-down"></i>
+                    </span>
+                                    </div>
+                                    <div class="accordion-body">
+                                        <div class="content">
+                                            <p> آزمون ها خارج از کتاب است نیستند <br>نمی توانم آزمون ها را انجام دهم<br>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </article>
+
+                                <article class="accordion">
+                                    <div class="accordion-head d-flex justify-content-start">
+                                        <span>دروس محاسباتی مانند ریاضی</span>
+
+                                    </div>
+                                    <div class="accordion-body">
+                                        <div class="content">
+                                            <p>نمی توانم آزمون ها را انجام دهم <br>آزمون ها استاندارد نیستند<br>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </article>
+
+                                <article class="accordion last-accordion">
+                                    <div class="accordion-head  d-flex justify-content-start">
+                                        <span>یادگیری دروس حفظی</span>
+                                    </div>
+                                    <div class="accordion-body">
+                                        <div class="content">
+                                            <p>نمی توانم آزمون ها را انجام دهم <br>آزمون ها خارج از کتاب است <br>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </article>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="caption">
+                            <h6>سلام بچه ها</h6>
+                            <h2>به نرم افزار استعداد یاب خوش اومدید</h2>
+                            <p> اینجا می تونی بازی کنی و درست رو هم یاد بگیری
+                                <a rel="nofollow" href="https://templatemo.com/page/1" target="_blank"> مشاهده بالاترین
+                                    امتیاز </a>
+                                <a rel="nofollow" href="https://www.pexels.com/@pressmaster"
+                                   target="_blank">Pressmaster</a>.
+                            </p>
+                            <div class="main-button-red">
+                                <div class="scroll-to-section"><a href="#contact">به ما بپیوند </a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <!-- ***** Main Banner Area End ***** -->
+
+    <section class="services">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="owl-service-item owl-carousel" dir="ltr">
+                        <a href="{% url 'see_game' %}">
+                            <div class="item d-flex justify-content-around align-items-center">
+                                <div class="icon">
+                                    <div class="main p-0 m-0">
+                                        <img src="/static/images/game2.jpg" alt="">
+                                        {% if farsi_average <= 2 %}
+                                            <img class="lock" src="/static/images/lockk.png" alt="">
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                <div class="d-flex flex-column align-items-center">
+                                    <div class="down-content">
+                                        <h4> بازی ببین و بگو </h4>
+                                    </div>
+
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div class="d-flex flex-column align-items-center">
+                                            <img class="game-img-lock mb-2" src="/static/images/test-icon-01.png"
+                                                 alt="">
+                                            <ul class="mt-2 d-flex">
+                                                <li><i class="fa fa-star"></i></li>
+                                                <li><i class="fa fa-star"></i></li>
+                                                <li><i class="fa fa-star"></i></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+
+                        <a href="{% url '2048_game' %}">
+                            <div class="item d-flex align-items-center justify-content-around">
+                                <div class="icon">
+                                    <div class="main">
+                                        <img src="/static/images/2048-image-2.png" alt="">
+                                        {% if riazi_average <= 2 %}
+                                            <img class="lock" src="/static/images/lockk.png" alt="">
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                <div class="d-flex flex-column align-items-center">
+                                    <div class="down-content">
+                                        <h4>بازی 2048</h4>
+                                    </div>
+                                    <div class="d-flex align-items-center flex-column">
+                                        <img class="game-img-lock mb-2" src="/static/images/test-icon-02.png" alt="">
+                                        <ul class="mt-2 d-flex">
+                                            <li><i class="fa fa-star"></i></li>
+                                            <li><i class="fa fa-star"></i></li>
+                                            <li><i class="fa fa-star"></i></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+
+                        <a href="">
+                            <div class="item d-flex align-items-center justify-content-around">
+                                <div class="icon">
+                                    <div class="main">
+                                        <img src="/static/images/wordplay.jpg" alt="">
+                                        <img class="lock" src="/static/images/lockk.png" alt="">
+                                    </div>
+                                </div>
+                                <div class="d-flex flex-column align-items-center">
+                                    <div class="down-content">
+                                        <h4>بازی با کلمات </h4>
+                                    </div>
+                                    <div class="d-flex align-items-center flex-column">
+                                        {#                                    <img class="game-img-lock" src="/static/images/lockk.png" alt="">#}
+                                        <img class="game-img-lock mb-2" src="/static/images/test-icon-03.png" alt="">
+                                        <ul class="mt-2 d-flex">
+                                            <li><i class="fa fa-star"></i></li>
+                                            <li><i class="fa fa-star"></i></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- --------------- آخرین اخبار مدرسه start ---------------- -->
+    <section class="school-news" id="meetings">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-heading">
+                        <h2>آخرین اخبار مدرسه</h2>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="categories">
+                        <h4>دسته بندی ها</h4>
+                        <ul>
+                            <li><a href="#"> مقالات </a></li>
+                            <li><a href="#"> کنفرانس ها </a></li>
+                            <li><a href="#"> همایش ها </a></li>
+                            <li><a href="#"> رویداد ها</a></li>
+                            <li><a href="#">درس ها</a></li>
+                        </ul>
+                        <div class="main-button-red">
+                            <a href="meetings.html">All Upcoming Meetings</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-8">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="meeting-item">
+                                <div class="thumb">
+                                    <div class="price">
+                                        <span>22 سخنرانی</span>
+                                    </div>
+                                    <a href="meeting-details.html"><img src="/static/images/meeting-01.jpg"
+                                                                        alt="New Lecturer Meeting"></a>
+                                </div>
+                                <div class="down-content">
+                                    <div class="date">
+                                        <h6>تیر <span>10</span></h6>
+                                    </div>
+                                    <a href="meeting-details.html">
+                                        <h4>آخرین سخنرانی ها</h4>
+                                    </a>
+                                    <p></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="meeting-item">
+                                <div class="thumb">
+                                    <div class="price">
+                                        <span>5 تکنیک</span>
+                                    </div>
+                                    <a href="meeting-details.html"><img src="/static/images/meeting-02.jpg"
+                                                                        alt="Online Teaching"></a>
+                                </div>
+                                <div class="down-content">
+                                    <div class="date">
+                                        <h6>خرداد <span>24</span></h6>
+                                    </div>
+                                    <a href="meeting-details.html">
+                                        <h4>تکنیک های آموزش آنلاین</h4>
+                                    </a>
+                                    <p></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="meeting-item">
+                                <div class="thumb">
+                                    <div class="price">
+                                        <!-- <span>$14.00</span> -->
+                                    </div>
+                                    <a href="meeting-details.html"><img src="/static/images/meeting-03.jpg"
+                                                                        alt="Higher Education"></a>
+                                </div>
+                                <div class="down-content">
+                                    <div class="date">
+                                        <h6>بهمن <span>26</span></h6>
+                                    </div>
+                                    <a href="meeting-details.html">
+                                        <h4>روش های تقویت حافظه</h4>
+                                    </a>
+                                    <p></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="meeting-item">
+                                <div class="thumb">
+                                    <div class="price">
+                                    </div>
+                                    <a href="meeting-details.html"><img src="/static/images/meeting-04.jpg"
+                                                                        alt="Student Training"></a>
+                                </div>
+                                <div class="down-content">
+                                    <div class="date">
+                                        <h6>آذر <span>30</span></h6>
+                                    </div>
+                                    <a href="meeting-details.html">
+                                        <h4>دانش آموزان فعال</h4>
+                                    </a>
+                                    <p></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- --------------- آخرین اخبار مدرسه end ---------------- -->
+
+
+    <!-- --------------- فهرست آزمون ها start ---------------- -->
+    <section class="exams" id="courses">
+
+        <div class="container">
+            <div class="row position-relative">
+                <div class="col-lg-12">
+                    <div class="section-heading">
+                        <h2>فهرست آزمون ها</h2>
+                    </div>
+                </div>
+                <div class=" tests row">
+                    <div class="col test-item riazi">
+                        {% if not user.is_authenticated %}
+                            <div class="lock-chain">
+                                <img src="/static/images/lock-chain-2.png" alt="">
+                            </div>
+                            <div class="test-icon">
+                                <img src="/static/images/test-icon-02.png" alt="">
+                            </div>
+                            <h4 onclick="showPopupTest()">آزمون درس ریاضی</h4>
+                            <p class="mb-2"> امتیاز شما 0 </p>
+                        {% else %}
+                            <div class="test-icon">
+                                <img src="/static/images/test-icon-02.png" alt="">
+                            </div>
+                            <a href="{% url 'quiz-riazi-page' %}"><h4>آزمون درس ریاضی</h4></a>
+                            <div class="test-level d-flex justify-content-evenly align-items-end">
+                                <p class="mb-2"> سطح آزمون </p>
+                                <i class="bi bi-1-circle"></i>
+                            </div>
+                            <div class="number_do_test d-flex justify-content-around align-items-center">
+                                <p class="mb-2"> شرکت در آزمون </p>
+                                <h6>{{ len_r }} <small>بار</small></h6>
+                            </div>
+                            <div class="number_do_test d-flex justify-content-around align-items-center">
+                                <p class="mb-2"> امتیاز </p>
+                                <h6>{{ riazi_average }}</h6>
+                            </div>
+
+                            <div class="service-item">
+                                <div class="mt-2">
+                                    <ul>
+                                        {% if 0 < riazi_average and riazi_average <= 1 %}
+                                            <li><i class="fa fa-star"></i></li>
+                                        {% endif %}
+                                        {% if 1 < riazi_average and riazi_average <= 2 %}
+                                            <li><i class="fa fa-star"></i></li>
+                                            <li><i class="fa fa-star"></i></li>
+                                        {% endif %}
+                                        {% if 2 < riazi_average and riazi_average <= 3 %}
+                                            <li><i class="fa fa-star"></i></li>
+                                            <li><i class="fa fa-star"></i></li>
+                                            <li><i class="fa fa-star"></i></li>
+                                        {% endif %}
+                                        {% if 3 < riazi_average and riazi_average <= 4 %}
+                                            <li><i class="fa fa-star"></i></li>
+                                            <li><i class="fa fa-star"></i></li>
+                                            <li><i class="fa fa-star"></i></li>
+                                            <li><i class="fa fa-star"></i></li>
+                                        {% endif %}
+                                        {% if 4 < riazi_average and riazi_average <= 5 %}
+                                            <li><i class="fa fa-star"></i></li>
+                                            <li><i class="fa fa-star"></i></li>
+                                            <li><i class="fa fa-star"></i></li>
+                                            <li><i class="fa fa-star"></i></li>
+                                            <li><i class="fa fa-star"></i></li>
+                                        {% endif %}
+                                    </ul>
+                                </div>
+                            </div>
+                        {% endif %}
+                    </div>
+
+                    <div class="col test-item farsi">
+                        {% if not user.is_authenticated %}
+                            <div class="lock-chain">
+                                <img src="/static/images/lock-chain-2.png" alt="">
+                            </div>
+                            <div class="test-icon">
+                                <img src="/static/images/test-icon-01.png" alt="">
+                            </div>
+                            <h4 onclick="showPopupTest()">آزمون درس فارسی</h4>
+                            <p class="mb-2"> امتیاز شما 0 </p>
+                        {% else %}
+                            <div class="test-icon">
+                                <img src="/static/images/test-icon-01.png" alt="">
+                            </div>
+                            <a href="{% url 'quiz-farsi-page' %}"><h4>آزمون درس فارسی</h4></a>
+                            <div class="test-level d-flex justify-content-evenly align-items-end">
+                                <p class="mb-2"> سطح آزمون </p>
+                                <i class="bi bi-1-circle"></i>
+                            </div>
+                            <div class="number_do_test d-flex justify-content-around align-items-center">
+                                <p class="mb-2"> شرکت در آزمون </p>
+                                <h6>{{ len_f }} <small>بار</small></h6>
+                            </div>
+                            <div class="number_do_test d-flex justify-content-around align-items-center">
+                                <p class="mb-2"> امتیاز </p>
+                                <h6>{{ farsi_average }}</h6>
+                            </div>
+                            <div class="service-item">
+                                <div class="mt-2">
+                                    <ul>
+                                        {% if 0 < farsi_average and farsi_average <= 1 %}
+                                            <li><i class="fa fa-star"></i></li>
+                                        {% endif %}
+                                        {% if 1 < farsi_average and farsi_average <= 2 %}
+                                            <li><i class="fa fa-star"></i></li>
+                                            <li><i class="fa fa-star"></i></li>
+                                        {% endif %}
+                                        {% if 2 < farsi_average and farsi_average <= 3 %}
+                                            <li><i class="fa fa-star"></i></li>
+                                            <li><i class="fa fa-star"></i></li>
+                                            <li><i class="fa fa-star"></i></li>
+                                        {% endif %}
+                                        {% if 3 < farsi_average and farsi_average <= 4 %}
+                                            <li><i class="fa fa-star"></i></li>
+                                            <li><i class="fa fa-star"></i></li>
+                                            <li><i class="fa fa-star"></i></li>
+                                            <li><i class="fa fa-star"></i></li>
+                                        {% endif %}
+                                        {% if 4 < farsi_average and farsi_average <= 5 %}
+                                            <li><i class="fa fa-star"></i></li>
+                                            <li><i class="fa fa-star"></i></li>
+                                            <li><i class="fa fa-star"></i></li>
+                                            <li><i class="fa fa-star"></i></li>
+                                            <li><i class="fa fa-star"></i></li>
+                                        {% endif %}
+                                    </ul>
+                                </div>
+                            </div>
+                        {% endif %}
+                    </div>
+
+                    <div class="col test-item hefzi">
+                        {% if not user.is_authenticated %}
+                            <div class="lock-chain">
+                                <img src="/static/images/lock-chain-2.png" alt="">
+                            </div>
+                        {% endif %}
+                        <div class="service-item">
+                            <div class="test-icon">
+                                <img src="/static/images/test-icon-03.png" alt="">
+                            </div>
+                            <a href="{% url 'quiz-farsi-page' %}"><h4>آزمون دروس حفظی</h4></a>
+                            <div class="test-level d-flex justify-content-evenly align-items-end">
+                                <p class="mb-2"> سطح آزمون </p>
+                                <i class="bi bi-1-circle"></i>
+                            </div>
+                            <div class="number_do_test d-flex justify-content-around align-items-center">
+                                <p class="mb-2"> شرکت در آزمون </p>
+                                <h6>0 <small>بار</small></h6>
+                            </div>
+                            <div class="number_do_test d-flex justify-content-around align-items-center">
+                                <p class="mb-2"> امتیاز </p>
+                                <h6>0</h6>
+                            </div>
+                            <div class="service-item">
+                                <div class="mt-2">
+                                    <ul>
+                                        <li><i class="fa fa-star"></i></li>
+                                        <li><i class="fa fa-star"></i></li>
+                                        <li><i class="fa fa-star"></i></li>
+                                        <li><i class="fa fa-star"></i></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col test-item english">
+                        {% if not user.is_authenticated %}
+                            <div class="lock-chain">
+                                <img src="/static/images/lock-chain-2.png" alt="">
+                            </div>
+                        {% endif %}
+                        <div class="service-item">
+                            <div class="test-icon">
+                                <img src="/static/images/test-icon-04.png" alt="">
+                            </div>
+                            <h4>آزمون درس انگلیسی</h4>
+                            {#                            <p> امتیاز شما 50 </p>#}
+                            {#                            {% if not user.is_authenticated %}#}
+                            {#                                <i class="fa fa-lock fs-4"></i>#}
+                            {#                            {% endif %}#}
+                            <div class="mt-2">
+                                <ul>
+                                    <li><i class="fa fa-star"></i></li>
+                                    <li><i class="fa fa-star"></i></li>
+                                    <li><i class="fa fa-star"></i></li>
+                                    <li><i class="fa fa-star"></i></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="popup-test-container">
+                    <div class="popup-test bg-white">
+                        <div class="close">
+                            <i class="fa fa-times"></i>
+                        </div>
+                        {% if not user.is_authenticated %}
+                            <p class="text-secondary ">برای ورود به آزمون ابتدا باید ثبت نام کنید</p>
+                            <a href="{% url 'register_page' %}">
+                                <button id="register-button">ثبت نام</button>
+                            </a>
+                        {% else %}
+                            <p class="text-secondary ">برای ورود به آزمون ابتدا وارد بازی شوید</p>
+                            {#                            <a href="{% url 'quiz_riazi_page' %}">#}
+                            {#                                <button id="game-button"> ورود به بازی</button>#}
+                            {#                            </a>#}
+                        {% endif %}
+                    </div>
+                </div>
+
+                {#                <div class="popup-test-container">#}
+                {#                    <div class="popup-test bg-white">#}
+                {#                        <div class="close">#}
+                {#                            <i class="fa fa-times"></i>#}
+                {#                        </div>#}
+                {#                        {% if not user.is_authenticated %}#}
+                {#                            <p class="text-secondary ">برای ورود به آزمون ابتدا باید ثبت نام کنید</p>#}
+                {#                            <a href="{% url 'register_page' %}">#}
+                {#                                <button id="register-button">ثبت نام</button>#}
+                {#                            </a>#}
+                {#                        {% else %}#}
+                {#                            <p class="text-secondary ">برای ورود به آزمون ابتدا وارد بازی شوید</p>#}
+                {#                            <a href="{% url 'quiz_riazi_page' %}">#}
+                {#                                <button id="game-button"> ورود به بازی</button>#}
+                {#                            </a>#}
+                {#                        {% endif %}#}
+                {#                    </div>#}
+                {#                </div>#}
+
+
+            </div>
+        </div>
+
+        <!-- <div class="container">
+          <div class="sugestion-exams">
+            <i class="fa fa-angle-right"></i>
+            <div class="sugestion-exam-container">
+              <div class="exam-item">
+                <div class="item">
+                  <img src="static/images/test-icon-04.png" alt="">
+                  <h4>آزمون درس انگلیسی1 </h4>
+                  <p> امتیاز شما 50 </p>
+                </div>
+                <div class="item">
+                  <img src="static/images/test-icon-02.png" alt="">
+                  <h4>آزمون درس انگلیسی2</h4>
+                  <p> امتیاز شما 50 </p>
+                </div>
+                <div class="item">
+
+                  <img src="static/images/test-icon-03.png" alt="">
+                  <h4>3آزمون درس انگلیسی</h4>
+                  <p> امتیاز شما 50 </p>
+                </div>
+                <div class="item">
+
+                  <img src="static/images/test-icon-040.png" alt="">
+                  <h4>آزمون درس انگلیسی4</h4>
+                  <p> امتیاز شما 50 </p>
+                </div>
+                <div class="item">
+                  <img src="static/images/test-icon-01.png" alt="">
+                  <h4>آزمون درس انگلیسی5</h4>
+                  <p> امتیاز شما 50 </p>
+                </div>
+              </div>
+            </div>
+            <i class="fa fa-angle-left"></i>
+          </div>
+        </div> -->
+    </section>
+    <!-- --------------- فهرست آزمون ها end ---------------- -->
+
+
+    <!-- ---------------   آمار و ارقام start ---------------- -->
+    <section class="our-facts">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <h2> آمار و ارقام </h2>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="count-area-content percentage">
+                                        <div class="count-digit">94</div>
+                                        <div class="count-title">دانش آموزان برتر</div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="count-area-content">
+                                        <div class="count-digit">12</div>
+                                        <div class="count-title"> معلمان فعال</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="count-area-content new-students">
+                                        <div class="count-digit">2345</div>
+                                        <div class="count-title">تعداد دانش آموزان</div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="count-area-content">
+                                        <div class="count-digit">18.5</div>
+                                        <div class="count-title">بالاترین نمره</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 align-self-center">
+                    <div class="video">
+                        <a href="https://www.youtube.com/watch?v=HndV87XpkWg" target="_blank"><img
+                                src="/static/images/play-icon.png"
+                                alt=""></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ---------------   آمار و ارقام end ---------------- -->
+
+    {#    <section class="contact-us" id="contact">#}
+    {#        <div class="container">#}
+    {#            <div class="row">#}
+    {#                <div class="col-lg-9 align-self-center">#}
+    {#                    <div class="row">#}
+    {#                        <div class="col-lg-12">#}
+    {#                            <form id="contact" action="" method="post">#}
+    {#                                <div class="row">#}
+    {#                                    <div class="col-lg-12">#}
+    {#                                        <h2>Let's get in touch</h2>#}
+    {#                                    </div>#}
+    {#                                    <div class="col-lg-4">#}
+    {#                                        <fieldset>#}
+    {#                                            <input name="name" type="text" id="name" placeholder="YOURNAME...*"#}
+    {#                                                   required="">#}
+    {#                                        </fieldset>#}
+    {#                                    </div>#}
+    {#                                    <div class="col-lg-4">#}
+    {#                                        <fieldset>#}
+    {#                                            <input name="email" type="text" id="email" pattern="[^ @]*@[^ @]*"#}
+    {#                                                   placeholder="YOUR EMAIL..."#}
+    {#                                                   required="">#}
+    {#                                        </fieldset>#}
+    {#                                    </div>#}
+    {#                                    <div class="col-lg-4">#}
+    {#                                        <fieldset>#}
+    {#                                            <input name="subject" type="text" id="subject" placeholder="SUBJECT...*"#}
+    {#                                                   required="">#}
+    {#                                        </fieldset>#}
+    {#                                    </div>#}
+    {#                                    <div class="col-lg-12">#}
+    {#                                        <fieldset>#}
+    {#                      <textarea name="message" type="text" class="form-control" id="message"#}
+    {#                                placeholder="YOUR MESSAGE..." required=""></textarea>#}
+    {#                                        </fieldset>#}
+    {#                                    </div>#}
+    {#                                    <div class="col-lg-12">#}
+    {#                                        <fieldset>#}
+    {#                                            <button type="submit" id="form-submit" class="button">SEND MESSAGE NOW#}
+    {#                                            </button>#}
+    {#                                        </fieldset>#}
+    {#                                    </div>#}
+    {#                                </div>#}
+    {#                            </form>#}
+    {#                        </div>#}
+    {#                    </div>#}
+    {#                </div>#}
+    {#                <div class="col-lg-3">#}
+    {#                    <div class="right-info">#}
+    {#                        <ul>#}
+    {#                            <li>#}
+    {#                                <h6>Phone Number</h6>#}
+    {#                                <span>010-020-0340</span>#}
+    {#                            </li>#}
+    {#                            <li>#}
+    {#                                <h6>Email Address</h6>#}
+    {#                                <span>info@meeting.edu</span>#}
+    {#                            </li>#}
+    {#                            <li>#}
+    {#                                <h6>Street Address</h6>#}
+    {#                                <span>Rio de Janeiro - RJ, 22795-008, Brazil</span>#}
+    {#                            </li>#}
+    {#                            <li>#}
+    {#                                <h6>Website URL</h6>#}
+    {#                                <span>www.meeting.edu</span>#}
+    {#                            </li>#}
+    {#                        </ul>#}
+    {#                    </div>#}
+    {#                </div>#}
+    {#            </div>#}
+    {#        </div>#}
+    {#        <div class="footer">#}
+    {#            <p>Copyright © 2022 Edu Meeting Co., Ltd. All Rights Reserved.#}
+    {#                <br>Design: <a href="https://templatemo.com" target="_parent" title="free css templates">TemplateMo</a>#}
+    {#            </p>#}
+    {#        </div>#}
+    {#    </section>#}
+
+    <!-- --------------- go to top start ---------------- -->
+    <div class="go-to-top ">
+        <div class="go-to-top-content">
+            <i class="fa faicon fa fa-chevron-up"></i>
+        </div>
+    </div>
+    <!-- --------------- go to top end ---------------- -->
+
+
+    <!-- Scripts -->
+    <!-- Bootstrap core JavaScript -->
+
+    <script>
+        //according to loftblog tut
+        $('.nav li:first').addClass('active');
+        // const nav = document.querySelector('.nav');
+        // console.log('nav : ', nav.children);
+
+        var showSection = function showSection(section, isAnimate) {
+            var
+                direction = section.replace(/#/, ''),
+                reqSection = $('.section').filter('[data-section="' + direction + '"]'),
+                reqSectionPos = reqSection.offset().top - 0;
+
+            if (isAnimate) {
+                $('body, html').animate({
+                        scrollTop: reqSectionPos
+                    },
+                    800);
+            } else {
+                $('body, html').scrollTop(reqSectionPos);
+            }
+
+        };
+
+        var checkSection = function checkSection() {
+            $('.section').each(function () {
+                var
+                    $this = $(this),
+                    topEdge = $this.offset().top - 80,
+                    bottomEdge = topEdge + $this.height(),
+                    wScroll = $(window).scrollTop();
+                if (topEdge < wScroll && bottomEdge > wScroll) {
+                    var
+                        currentId = $this.data('section'),
+                        reqLink = $('a').filter('[href*=\\#' + currentId + ']');
+                    reqLink.closest('li').addClass('active').siblings().removeClass('active');
+                }
+            });
+        };
+
+        $('.main-menu, .responsive-menu, .scroll-to-section').on('click', 'a', function (e) {
+            e.preventDefault();
+            showSection($(this).attr('href'), true);
+        });
+
+        $(window).scroll(function () {
+            checkSection();
+        });
+
+        function riaziExam(lesson) {
+            console.log('lesson11: ', lesson);
+            $.get('/quiz-riazi', {lesson: lesson}).then(res => {
+                console.log('lesson: ', lesson);
+            })
+        }
+
+        function farsiExam(lesson) {
+            console.log('lesson11: ', lesson);
+            $.get('/quiz-farsi', {lesson: lesson}).then(res => {
+                console.log('lesson: ', lesson);
+            })
+        }
+
+    </script>
+{% endblock %}

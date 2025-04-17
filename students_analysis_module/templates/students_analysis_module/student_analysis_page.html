@@ -1,0 +1,201 @@
+{% extends 'shared/_layout.html' %}
+
+{% block content %}
+{#    {% include 'shared/header_component.html' %}#}
+    <section class="section my-5 py-5">
+        <div class="quiz_analysis m-5 py-2">
+            <div class=" position-relative">
+                <div class="lessons-titles">
+                    <div class="lesson-title lesson-title1 title-active">
+                        <div class="d-flex justify-content-srart align-items-center p-3">
+                            <div class="test-icon">
+                                <img src="/static/images/test-icon-01.png" alt="">
+                            </div>
+                            <h4>فارسی </h4>
+                        </div>
+                    </div>
+                    <div class="lesson-title lesson-title2">
+                        <div class="d-flex justify-content-srart align-items-center p-3">
+                            <div class="test-icon">
+                                <img src="/static/images/test-icon-02.png" alt="">
+                            </div>
+                            <h4>ریاضی </h4>
+                        </div>
+                    </div>
+                    <div class="lesson-title lesson-title3">
+                        <div class="d-flex justify-content-srart align-items-center p-3">
+                            <div class="test-icon">
+                                <img src="/static/images/test-icon-04.png" alt="">
+                            </div>
+                            <h4>همه دروس </h4>
+                        </div>
+                    </div>
+                    <div class="lesson-title lesson-title4">
+                        <div class="d-flex justify-content-srart align-items-center p-3">
+                            <div class="test-icon">
+                                <img src="/static/images/test-icon-04.png" alt="">
+                            </div>
+                            <h4>معدل دروس </h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="lessons">
+                    <div class="table-responsive farsi">
+                        <div class="d-flex justify-content-center text-center my-table ">
+                            <img src="static/images/analyses_photo/{{ current_user.id }}_2.png" alt=""><br>
+                        </div>
+                    </div>
+                    <div class="table-responsive riazi">
+                        <div class="d-flex justify-content-center my-table">
+                            <img src="static/images/analyses_photo/{{ current_user.id }}_3.png" alt=""><br>
+                        </div>
+                    </div>
+                    <div class="table-responsive all-lessons">
+                        <div class="d-flex justify-content-center my-table">
+                            <img src="static/images/analyses_photo/{{ current_user.id }}_4.png" alt="">
+                        </div>
+                    </div>
+                    <div class="table-responsive average">
+                        <div class="d-flex justify-content-center my-table">
+                            <img src="static/images/analyses_photo/{{ current_user.id }}_5.png" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br>
+    <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br>
+    <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br>
+    <br> <br> <br> <br> <br> <br>
+
+    <script>
+        const lessonTitle = document.querySelector('.lessons-titles').children;
+        const lessons = document.querySelector('.lessons').children;
+        console.log('farsiha is: ', lessons[1])
+        for (let i = 0; i < lessonTitle.length; i++) {
+            lessonTitle[i].addEventListener('click', (e) => {
+                for (let j = 0; j < lessonTitle.length; j++) {
+                    lessonTitle[j].classList.remove('title-active');
+                    lessons[j].style.display = 'none'
+                }
+                lessonTitle[i].classList.add('title-active');
+                lessons[i].style.display = 'block';
+                // this.classList.add('title-active')
+            })
+        }
+
+
+    </script>
+{% endblock %}
+
+
+
+
+
+{#<!DOCTYPE html>#}
+{#<html lang="en">#}
+{#<head>#}
+{#    <meta charset="UTF-8">#}
+{#    <meta http-equiv="X-UA-Compatible" content="IE=edge">#}
+{#    <meta name="viewport" content="width=device-width, initial-scale=1.0">#}
+{#    <meta name="author" content="TemplateMo">#}
+{#    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900" rel="stylesheet">#}
+{#    <link href="/static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">#}
+{#    <link rel="stylesheet" href="/static/css/student_analysis.css">#}
+{#    <link rel="stylesheet" href="/static/css/owl.css">#}
+{#    <link rel="stylesheet" href="/static/css/lightbox.css">#}
+{#    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">#}
+{#    <title>تحلیل آزمون ها</title>#}
+{#</head>#}
+{##}
+{#<body>#}
+{#<div class="container m-5 p-5 ">#}
+{#    <div class="quiz_analysis ">#}
+{#        <div class=" position-relative">#}
+{#            <div class="lessons-titles">#}
+{#                <div class="lesson-title lesson-title1 title-active">#}
+{#                    <div class="d-flex justify-content-srart align-items-center p-3">#}
+{#                        <div class="test-icon">#}
+{#                            <img src="/static/images/test-icon-01.png" alt="">#}
+{#                        </div>#}
+{#                        <h4>فارسی </h4>#}
+{#                    </div>#}
+{#                </div>#}
+{#                <div class="lesson-title lesson-title2">#}
+{#                    <div class="d-flex justify-content-srart align-items-center p-3">#}
+{#                        <div class="test-icon">#}
+{#                            <img src="/static/images/test-icon-02.png" alt="">#}
+{#                        </div>#}
+{#                        <h4>ریاضی </h4>#}
+{#                    </div>#}
+{#                </div>#}
+{#                <div class="lesson-title lesson-title3">#}
+{#                    <div class="d-flex justify-content-srart align-items-center p-3">#}
+{#                        <div class="test-icon">#}
+{#                            <img src="/static/images/test-icon-04.png" alt="">#}
+{#                        </div>#}
+{#                        <h4>همه دروس </h4>#}
+{#                    </div>#}
+{#                </div>#}
+{#                <div class="lesson-title lesson-title4">#}
+{#                    <div class="d-flex justify-content-srart align-items-center p-3">#}
+{#                        <div class="test-icon">#}
+{#                            <img src="/static/images/test-icon-04.png" alt="">#}
+{#                        </div>#}
+{#                        <h4>معدل دروس </h4>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#            <div class="lessons">#}
+{#                <div class="table-responsive farsi">#}
+{#                    <div class="d-flex justify-content-center text-center my-table ">#}
+{#                        <img src="static/images/analyses_photo/2.png" alt=""><br>#}
+{#                    </div>#}
+{#                </div>#}
+{#                <div class="table-responsive riazi">#}
+{#                    <div class="d-flex justify-content-center my-table">#}
+{#                        <img src="static/images/analyses_photo/3.png" alt=""><br>#}
+{#                    </div>#}
+{#                </div>#}
+{#                <div class="table-responsive all-lessons">#}
+{#                    <div class="d-flex justify-content-center my-table">#}
+{#                        <img src="static/images/analyses_photo/4.png" alt="">#}
+{#                    </div>#}
+{#                </div>#}
+{#                <div class="table-responsive average">#}
+{#                    <div class="d-flex justify-content-center my-table">#}
+{#                        <img src="static/images/analyses_photo/5.png" alt="">#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+{#</div>#}
+{##}
+{#<script>#}
+{#    const lessonTitle = document.querySelector('.lessons-titles').children;#}
+{#    const lessons = document.querySelector('.lessons').children;#}
+{#    console.log('farsiha is: ', lessons[1])#}
+{##}
+{#    for (let i = 0; i < lessonTitle.length; i++) {#}
+{#        lessonTitle[i].addEventListener('click', (e) => {#}
+{#            for (let j = 0; j < lessonTitle.length; j++) {#}
+{#                lessonTitle[j].classList.remove('title-active');#}
+{#                lessons[j].style.display = 'none'#}
+{#            }#}
+{#            lessonTitle[i].classList.add('title-active');#}
+{#            lessons[i].style.display = 'block';#}
+{#            // this.classList.add('title-active')#}
+{#        })#}
+{#    }#}
+{#</script>#}
+{##}
+{#<script src="/static/js/2048/2048.js" type="module"></script>#}
+{#<script src="/static/js/2048/grid.js" type="module"></script>#}
+{#<script src="/static/js/2048/number.js" type="module"></script>#}
+{#</body>#}
+{#</html>#}
+
+

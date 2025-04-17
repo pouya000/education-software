@@ -1,0 +1,13 @@
+[{
+"year": 1985,
+"teamId": "ATL",
+"leagueId": "NL",
+"playerId": "barkele01",
+"salary": 870000
+}, {
+"year": 1985,
+"teamId": "ATL",
+"leagueId": "NL",
+"playerId": "bedrost01",
+"salary": 550000
+} ]

@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="TemplateMo">
+    <script src="https://kit.fontawesome.com/eb8d05f470.js" crossorigin="anonymous"></script>
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+    <link href="/static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Additional CSS Files -->
+    <!-- <link rel="stylesheet" href="static/css/fontawesome.css"> -->
+    <link rel="stylesheet" href="/static/css/templatemo-edu-meeting.css">
+    <link rel="stylesheet" href="/static/css/owl.css">
+    <link rel="stylesheet" href="/static/css/lightbox.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <title>بازی حافظه</title>
+</head>
+<body>
+{% if need_score <= 0 %}
+    <div class="game-container">
+        <h2 class="text-info text-center">Memory Game</h2>
+        <div class="title d-flex">
+            <div class="mark1 px-1 d-flex justify-content-center align-items-center" id="points">
+                <button disabled> امتیاز :0</button>
+            </div>
+            <div class="play px-1 d-flex justify-content-center align-items-center">
+                <a href=""><i class="bi bi-caret-right-square-fill"></i></a>
+            </div>
+            <div class="time px-1 d-flex justify-content-center align-items-center">
+                دفعه
+            </div>
+        </div>
+        <div class="game-wrapper-container bg-light">
+            <div class="game-wrapper">
+
+            </div>
+        </div>
+        <div class="container">
+            <div class="quiz-result justify-content-center bg-white shadow">
+                <h2>GAME OVER</h2>
+                <a href="{% url 'see_game' %}">
+                    <button id="game-button">شروع مجدد بازی</button>
+                </a>
+                <h5 class="text-secondary ">امتیاز شما</h5>
+                <p> count_mach </p>
+
+            </div>
+        </div>
+    </div>
+{% else %}
+    <div class="d-flex flex-column justify-content-center align-items-center alert-score-container">
+        <h2 class="text-info text-center py-4">Memory Game</h2>
+        <h3 class="text-secondary">.برای ورود به بازی باید در آزمون <a href="{% url 'quiz-farsi-page' %}">فارسی</a> شرکت کنید و  <strong
+                class="text-warning">{{ need_score }}  ستاره</strong> دیگر جمع کنید</h3>
+    </div>
+{% endif %}
+
+
+<script>
+    const points = document.getElementById('points');
+    const quizResult = document.querySelector('.quiz-result');
+    const game = (function () {
+        const wrapper = document.querySelector('.game-wrapper');
+        const row = 4;
+        const col = 4;
+        const symbols = "ABCDEFGHIJKLMNOPRSTUY123456789".split("")
+        let cells = []
+        let previousCellIndex = null;
+        let canPlay = false;
+        let count_mach = 0;
+        let count_dismach = 0;
+
+        //create grid
+        const grid = document.createElement('div')
+        grid.classList.add('grid')
+        wrapper.appendChild(grid)
+
+        //create info panel
+        const infoPanel = document.createElement('div')
+        infoPanel.classList.add('info-panel')
+        wrapper.appendChild(infoPanel)
+
+        //create cells
+        for (let i = 0; i < row * col; i += 2) {
+            const symbol = randomSymbol()
+            for (let j = 0; j < 2; j++) {
+                const currentCellIndex = i + j;
+                const cellElement = document.createElement('div')
+                cellElement.classList.add('cell')
+                cellElement.style.width = `${100 / col}%`
+                cellElement.innerText = symbol;
+
+                const cell = {
+                    symbol: symbol,
+                    element: cellElement,
+                    hasMatch: false
+                }
+
+                setTimeout(() => {
+                    cellElement.classList.add('hide')
+                }, randomInt(2500, 3500))
+
+                if (currentCellIndex > 2) {
+                    const previousRandomIndex = randomInt(0, i)
+                    cells[currentCellIndex] = cells[previousRandomIndex];
+                    cells[previousRandomIndex] = cell;
+
+                } else {
+                    cells[currentCellIndex] = cell;
+                    console.log(cell)
+                }
+            }
+        }
+
+        //add all elements
+        cells.forEach((item, index) => {
+
+            {#console.log('index is: ', index);#}
+            item.element.addEventListener('click', () => cellClickHandler(index))
+            grid.appendChild(item.element)
+            canPlay = true
+        })
+
+        function randomSymbol() {
+            const symbolIndex = randomInt(0, symbols.length - 1)
+            const symbol = symbols[symbolIndex]
+            //delete symbol from symbols
+            symbols.splice(symbolIndex, 1)
+            return symbol;
+        }
+
+        function randomInt(min, max) {
+            return Math.round(Math.random() * (max - min)) + min
+        }
+
+        function cellClickHandler(index) {
+            {#console.log('index is: ', index);#}
+            const cellElement = cells[index].element
+            if (canPlay && cellElement.classList.contains('hide')) {
+                canPlay = false;
+                cellElement.classList.remove('hide')
+                if (previousCellIndex === null) {
+                    //first click
+                    previousCellIndex = index;
+                    canPlay = true
+                } else {
+                    //console.log(cells[previousCellIndex].symbol,cells[index].symbol)
+                    if (cells[previousCellIndex].symbol === cells[index].symbol) {
+                        cells[previousCellIndex].hasMatch = true;
+                        cells[index].hasMatch = true
+                        showInfo('MATCH', 'green');
+                        count_mach += 1;
+                        console.log('count_mach', count_mach);
+                        points.innerHTML = `<button disabled> امتیاز : ${count_mach}</button>`
+                        setTimeout(() => {
+                            previousCellIndex = null;
+                            canPlay = true
+                        }, 500)
+                    } else {
+                        count_dismach += 1;
+                        if (count_dismach === 4) {
+                            quizResult.classList.add('active');
+                        }
+                        console.log('count_dismach', count_dismach);
+                        showInfo('NO MATCH', 'red')
+                        cells[previousCellIndex].element.classList.add('hide')
+                        cellElement.classList.add('hide')
+                        previousCellIndex = null;
+                        canPlay = true
+                    }
+
+                }
+            }
+        }
+
+        function showInfo(message, type) {
+            infoPanel.innerHTML = `<span class='${type}'>${message}</span>`
+        }
+
+    })
+    game();
+</script>
+{#{% include 'shared/footer_refrences.html' %}#}
+</body>
+</html>
