@@ -10,7 +10,7 @@ def memory_game(request):
     farsi_scors = []
     farsi = Quiz.objects.filter(quizdetail__lesson_id=2).all()
     for exam in farsi:
-        # print('farsi_score : ', exam.quizdetail_set.all()[0].score)
+        # print('farsfffi_score : ', exam.quizdetail_set.all()[0].score)
         farsi_scors.append(exam.quizdetail_set.all()[0].score)
     if len(farsi_scors) == 0:
         ave_farsi_scors = sum(farsi_scors) / 1
